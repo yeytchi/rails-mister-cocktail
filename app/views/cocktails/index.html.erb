@@ -1,5 +1,6 @@
 <h1>Our Cocktails</h1>
 
+
 <ul>
   <% @cocktails.each do |cocktail| %>
     <li>
@@ -11,3 +12,5 @@
 </ul>
 
 <%= link_to 'Create a new Cocktail', new_cocktail_path %>
+
+<%= cl_image_tag("sample", width: 400, height: 300, crop: :fill) %>
