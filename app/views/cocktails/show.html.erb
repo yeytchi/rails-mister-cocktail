@@ -1,0 +1,23 @@
+<h1><%= @cocktail.name %></h1>
+
+
+<h2>Ingredients</h2>
+
+<ul>
+<% @all_doses.each do |dose| %>
+  <% if dose.cocktail_id == @cocktail.id %>
+    <li>
+      <%= "#{dose.description} - #{Ingredient.find(dose.ingredient_id).name}" %>
+        <i class="fas fa-trash-alt"><% link_to "", cocktail_dose_path(@cocktail.id) %></i>
+    </li>
+  <% end %>
+<% end %>
+</ul>
+
+<div>
+  <%= link_to 'Add an ingredient', new_cocktail_dose_path(@cocktail) %>
+</div>
+
+<div>
+  <%= link_to 'Back to list of cocktails', root_path %>
+</div>
