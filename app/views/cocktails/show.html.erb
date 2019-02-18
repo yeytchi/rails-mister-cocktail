@@ -1,23 +1,27 @@
-<h1><%= @cocktail.name %></h1>
+<div class="navbar-wagon">
+  <%= link_to root_path, method: :get do %><i class="fas fa-beer btn-return"></i><% end %>
+  <h1><%= @cocktail.name %></h1>
+</div>
+
+<%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
 
 
-<h2>Ingredients</h2>
+<h2>Doses</h2>
 
 <ul>
 <% @all_doses.each do |dose| %>
   <% if dose.cocktail_id == @cocktail.id %>
     <li>
       <%= "#{dose.description} - #{Ingredient.find(dose.ingredient_id).name}" %>
-        <i class="fas fa-trash-alt"><% link_to "", cocktail_dose_path(@cocktail.id) %></i>
+      <%= link_to dose_path(dose), method: :delete, data:{confirm: "Delete this ingredient?"} do %><i class="fas fa-trash-alt"></i>
+      <% end %>
     </li>
   <% end %>
 <% end %>
 </ul>
 
-<div>
-  <%= link_to 'Add an ingredient', new_cocktail_dose_path(@cocktail) %>
+<div class="btn btn-secondary">
+  <%= link_to 'Add a dose', new_cocktail_dose_path(@cocktail) %>
 </div>
 
-<div>
-  <%= link_to 'Back to list of cocktails', root_path %>
-</div>
+

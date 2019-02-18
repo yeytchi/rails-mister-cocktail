@@ -1,16 +1,25 @@
-<h1>Our Cocktails</h1>
+<div class="navbar-wagon">
+  <%= link_to root_path, method: :get do %><i class="fas fa-beer btn-return"></i><% end %>
+  <h1>Bachibouzouk Cocktails</h1>
+  <div class="btn">
+    <%= link_to 'New Cocktail', new_cocktail_path %>
+  </div>
+</div>
 
 
-<ul>
-  <% @cocktails.each do |cocktail| %>
-    <li>
-      <div class="cocktail-card">
-        <%= link_to cocktail.name, cocktail_path(cocktail.id) %>
+<div class="container">
+  <div class="row">
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="cocktail-card">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>')">
+              <div class="card-description">
+                <h2><%= cocktail.name %></h2>
+              </div>
+            <%= link_to "", cocktail_path(cocktail), class: 'card-link' %>
+          </div>
+        </div>
       </div>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to 'Create a new Cocktail', new_cocktail_path %>
-
-<%= cl_image_tag("sample", width: 400, height: 300, crop: :fill) %>
+    <% end %>
+  </div>
+</div>
